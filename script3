@@ -2,17 +2,26 @@
 
 Action=${1}
 
+function create_file()
+{ 
+touch "${1}-12345" 
+
+}
+
 function display_help()
 {
 cat << EOF
-Usage: ${0} {-h|--help}
+Usage: ${0} {-h|--help|-c|--create}
 
 OPTIONS:
 	-h | --help display the command help
+	-c | --create create a new file 
 
 Example:
 	Display help:
 		$ ${0} -h
+	Create file:
+		$ ${0} -c
 
 EOF
 }
@@ -20,6 +29,9 @@ EOF
 case "$Action" in 
 	-h|--help)
 		display_help
+		;;
+	-c|--create)
+		create_file "${2:-test}"
 		;;
 
 	*)
