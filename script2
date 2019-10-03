@@ -1,0 +1,14 @@
+#!/bin/bash
+
+Action=${1:-launch}
+
+if [ -z "$1" ]
+
+then
+echo "no ars supp, def action is: $Action"
+
+else
+
+echo "Initiating $Action"
+
+fi
