@@ -1,6 +1,16 @@
 #!/bin/bash
 
 Action=${1}
+Version="1.0.1"
+function version()
+{
+echo "$Version"
+}
+
+function  delete_file()
+{
+sudo rm  "${1}-12345"
+}
 
 function create_file()
 { 
@@ -11,17 +21,22 @@ touch "${1}-12345"
 function display_help()
 {
 cat << EOF
-Usage: ${0} {-h|--help|-c|--create}
+Usage: ${0} {-h|--help|-c|--create|-d|--delete|-v|--version}
 
 OPTIONS:
 	-h | --help display the command help
 	-c | --create create a new file 
-
+	-d | --delete delete the specified file
+	-v | --version gives version details
 Example:
 	Display help:
 		$ ${0} -h
 	Create file:
-		$ ${0} -c
+		$ ${0} -c foo.txt
+	Delete file:
+		$ ${0} -d foo.txt
+	Version :
+        	$ ${0} -v
 
 EOF
 }
@@ -33,7 +48,12 @@ case "$Action" in
 	-c|--create)
 		create_file "${2:-test}"
 		;;
-
+	-d|--delete)
+		delete_file "${2:-test}"
+		;;
+	-v|--version)
+		version
+		;;
 	*)
 	echo "Usage ${0} -h"
 	exit 1
