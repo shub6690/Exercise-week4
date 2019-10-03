@@ -1,0 +1,28 @@
+#!/bin/bash
+
+Action=${1}
+
+function display_help()
+{
+cat << EOF
+Usage: ${0} {-h|--help}
+
+OPTIONS:
+	-h | --help display the command help
+
+Example:
+	Display help:
+		$ ${0} -h
+
+EOF
+}
+
+case "$Action" in 
+	-h|--help)
+		display_help
+		;;
+
+	*)
+	echo "Usage ${0} -h"
+	exit 1
+esac
